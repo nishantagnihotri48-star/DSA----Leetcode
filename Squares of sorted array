@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int* sortedSquares(int* nums, int n) {
+    int* result = (int*)malloc(n * sizeof(int));
+    int left = 0, right = n - 1;
+    int pos = n - 1;   // fill result from the back
+
+    while (left <= right) {
+        int lsq = nums[left]  * nums[left];
+        int rsq = nums[right] * nums[right];
+
+        if (lsq > rsq) { result[pos--] = lsq; left++;  }
+        else            { result[pos--] = rsq; right--; }
+    }
+    return result;
+}
+
+void printArray(int* arr, int n) {
+    printf("[");
+    for (int i = 0; i < n; i++) {
+        printf("%d", arr[i]);
+        if (i < n - 1) printf(", ");
+    }
+    printf("]\n");
+}
+
+int main() {
+    int n1[] = {-4, -1, 0, 3, 10};
+    int sz1 = sizeof(n1) / sizeof(n1[0]);
+    printf("Input:  "); printArray(n1, sz1);
+    int* r1 = sortedSquares(n1, sz1);
+    printf("Output: "); printArray(r1, sz1);
+    free(r1);
+
+    int n2[] = {-7, -3, 2, 3, 11};
+    int sz2 = sizeof(n2) / sizeof(n2[0]);
+    printf("\nInput:  "); printArray(n2, sz2);
+    int* r2 = sortedSquares(n2, sz2);
+    printf("Output: "); printArray(r2, sz2);
+    free(r2);
+
+    return 0;
+}
