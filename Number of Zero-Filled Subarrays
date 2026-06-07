@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+long long zeroFilledSubarray(int* nums, int n) {
+    long long total = 0;
+    long long run   = 0;   
+
+    for (int i = 0; i < n; i++) {
+        if (nums[i] == 0) {
+            run++;         
+            total += run;   
+        } else {
+            run = 0;        
+        }
+    }
+    return total;
+}
+
+int main() {
+    int nums[] = {1, 0, 0, 1, 0};
+    int n = sizeof(nums) / sizeof(nums[0]);
+
+    printf("Array: ");
+    for (int i = 0; i < n; i++) printf("%d ", nums[i]);
+    printf("\nZero-filled subarrays: %lld\n", zeroFilledSubarray(nums, n));
+
+    int nums2[] = {0, 0, 0, 2, 0, 2};
+    int n2 = sizeof(nums2) / sizeof(nums2[0]);
+    printf("\nArray: ");
+    for (int i = 0; i < n2; i++) printf("%d ", nums2[i]);
+    printf("\nZero-filled subarrays: %lld\n", zeroFilledSubarray(nums2, n2));
+
+    return 0;
+}
