@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void runningSum(int* nums, int n) {
+    for (int i = 1; i < n; i++) {
+        nums[i] += nums[i - 1];
+    }
+}
+
+void printArray(int* arr, int n) {
+    printf("[");
+    for (int i = 0; i < n; i++) {
+        printf("%d", arr[i]);
+        if (i < n - 1) printf(", ");
+    }
+    printf("]\n");
+}
+
+int main() {
+    int nums1[] = {1, 2, 3, 4};
+    int n1 = sizeof(nums1) / sizeof(nums1[0]);
+    printf("Input:  "); printArray(nums1, n1);
+    runningSum(nums1, n1);
+    printf("Output: "); printArray(nums1, n1);
+
+    int nums2[] = {1, 1, 1, 1, 1};
+    int n2 = sizeof(nums2) / sizeof(nums2[0]);
+    printf("\nInput:  "); printArray(nums2, n2);
+    runningSum(nums2, n2);
+    printf("Output: "); printArray(nums2, n2);
+
+    int nums3[] = {3, 1, 2, 10, 1};
+    int n3 = sizeof(nums3) / sizeof(nums3[0]);
+    printf("\nInput:  "); printArray(nums3, n3);
+    runningSum(nums3, n3);
+    printf("Output: "); printArray(nums3, n3);
+
+    return 0;
+}
