@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int findFirst(int arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    int result = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == target) {
+            result = mid;
+            high = mid - 1; // Search left part
+        }
+        else if (arr[mid] < target)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return result;
+}
+
+int findLast(int arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    int result = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == target) {
+            result = mid;
+            low = mid + 1; // Search right part
+        }
+        else if (arr[mid] < target)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return result;
+}
+
+int main() {
+    int arr[] = {5, 7, 7, 8, 8, 10};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 8;
+
+    int first = findFirst(arr, n, target);
+    int last = findLast(arr, n, target);
+
+    printf("First Position: %d\n", first);
+    printf("Last Position: %d\n", last);
+
+    return 0;
+}
