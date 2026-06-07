@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int mySqrt(int x) {
+    if (x < 2) return x;
+
+    int lo = 1, hi = x / 2, ans = 0;
+
+    while (lo <= hi) {
+        long long mid = lo + (hi - lo) / 2;
+        long long sq  = mid * mid;
+
+        if (sq == x)       return (int)mid;
+        else if (sq < x) { ans = (int)mid; lo = (int)mid + 1; }
+        else               hi  = (int)mid - 1;
+    }
+    return ans;
+}
+
+int main() {
+    int tests[] = {0, 1, 4, 8, 9, 16, 17, 2147395600};
+    int n = sizeof(tests) / sizeof(tests[0]);
+
+    for (int i = 0; i < n; i++)
+        printf("sqrt(%d) = %d\n", tests[i], mySqrt(tests[i]));
+
+    return 0;
+}
