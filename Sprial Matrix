@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+void spiralOrder(int matrix[][4], int rows, int cols) {
+    int top = 0, bottom = rows - 1;
+    int left = 0, right = cols - 1;
+
+    printf("Spiral order: [");
+    int first = 1;
+
+    while (top <= bottom && left <= right) {
+        
+        for (int i = left; i <= right; i++) {
+            if (!first) printf(", ");
+            printf("%d", matrix[top][i]);
+            first = 0;
+        }
+        top++;
+
+        
+        for (int i = top; i <= bottom; i++) {
+            printf(", %d", matrix[i][right]);
+        }
+        right--;
+
+        
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--) {
+                printf(", %d", matrix[bottom][i]);
+            }
+            bottom--;
+        }
+
+        
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--) {
+                printf(", %d", matrix[i][left]);
+            }
+            left++;
+        }
+    }
+    printf("]\n");
+}
+
+int main() {
+    int m1[][4] = {
+        { 1,  2,  3,  4},
+        { 5,  6,  7,  8},
+        { 9, 10, 11, 12}
+    };
+    printf("Matrix 1 (3x4):\n");
+    spiralOrder(m1, 3, 4);
+
+    int m2[][3] = {{1,2,3},{4,5,6},{7,8,9}};
+    printf("\nMatrix 2 (3x3):\n");
+    int rows2=3, cols2=3;
+    int top=0,bottom=rows2-1,left=0,right=cols2-1;
+    printf("Spiral order: [");
+    int first=1;
+    while(top<=bottom&&left<=right){
+        for(int i=left;i<=right;i++){if(!first)printf(", ");printf("%d",m2[top][i]);first=0;}top++;
+        for(int i=top;i<=bottom;i++)printf(", %d",m2[i][right]);right--;
+        if(top<=bottom){for(int i=right;i>=left;i--)printf(", %d",m2[bottom][i]);bottom--;}
+        if(left<=right){for(int i=bottom;i>=top;i--)printf(", %d",m2[i][left]);left++;}
+    }
+    printf("]\n");
+    return 0;
+}
